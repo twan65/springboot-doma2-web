@@ -31,6 +31,8 @@ public class UserDetailsAuthenticationProvider extends AbstractUserDetailsAuthen
             this.setHideUserNotFoundExceptions(false);
             // Exception
         }
+        // TODO
+        return null;
     }
 
 }

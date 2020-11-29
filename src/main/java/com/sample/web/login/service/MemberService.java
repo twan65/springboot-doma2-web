@@ -1,7 +1,9 @@
 package com.sample.web.login.service;
 
 import com.sample.web.login.model.UserForm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class MemberService implements UserDetailsService {
 
@@ -33,5 +35,10 @@ public class MemberService implements UserDetailsService {
     public UserForm login(String userId, String password) {
 
         return new UserForm();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

@@ -45,14 +45,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .invalidateHttpSession(true); // HTTPセッションを初期化する。
     }
 
-    /**
-     * 認証を生成「AuthenticationManager」
-     * @param auth
-     * @throws Exception
-     */
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-    }
-
 }
