@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <!--  Common header -->
+    <th:block th:include="fragments/include-link"></th:block>
 </head>
 <body>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
+<div class="wrapper">
+    <!-- Side Bar -->
+    <div id="content">
+        <!-- Page Header -->
+        <header th:replace="fragments/header"></header>
         <h1>Login page</h1>
         <form th:action="@{/login}" method="post">
-            <div th:if="${param.error}">
-                <div class="alert alert-danger">
-                    Invalid username or password.
-                </div>
-            </div>
-            <div th:if="${param.logout}">
-                <div class="alert alert-info">
-                    You have been logged out.
-                </div>
-            </div>
             <div class="form-group">
                 <label for="username">Username</label>:
                 <input type="text"
@@ -43,11 +38,13 @@
                                name="login-submit"
                                id="login-submit"
                                class="form-control btn btn-info"
-                               value="Log In">
+                               value="LogIn">
                     </div>
                 </div>
             </div>
         </form>
     </div>
+</div>
+<th:block th:include="fragments/include-script"></th:block>
 </body>
 </html>

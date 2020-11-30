@@ -1,6 +1,6 @@
 package com.sample.web.search.controller;
 
-import com.sample.common.constant.ViewName;
+import com.sample.common.constant.ViewNames;
 import com.sample.web.search.model.SearchRequestForm;
 import com.sample.web.search.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,6 @@ public class SearchController {
 
         model.addAttribute("result", searchService.findSearchData(searchRequestForm, pageable));
 
-        return ViewName.SEARCH_PAGE;
+        return ViewNames.SEARCH_PAGE;
     }
 }

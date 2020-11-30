@@ -1,12 +1,12 @@
 package com.sample.web.login.controller;
 
-import com.sample.common.constant.ViewName;
-import com.sample.web.login.model.UserForm;
+import com.sample.common.constant.ViewNames;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
@@ -14,11 +14,15 @@ public class LoginController {
 
     @GetMapping("/")
     public String home() {
-        return ViewName.TOP_PAGE;
+        return ViewNames.TOP_PAGE;
     }
 
     @GetMapping("/login")
-    public String login(@ModelAttribute UserForm userForm, Model model) {
-        return ViewName.LOGIN_PAGE;
+    public String login(HttpSession session, Model model) {
+        if (session != null) {
+
+        }
+
+        return ViewNames.LOGIN_PAGE;
     }
 }
