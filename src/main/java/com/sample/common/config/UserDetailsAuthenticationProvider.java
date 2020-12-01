@@ -1,5 +1,6 @@
 package com.sample.common.config;
 
+import com.sample.common.exception.LoginException;
 import com.sample.web.login.model.CustomUser;
 import com.sample.web.login.model.UserForm;
 import com.sample.web.login.service.LoginService;
@@ -32,11 +33,14 @@ public class UserDetailsAuthenticationProvider extends AbstractUserDetailsAuthen
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         try {
             String password = (String) authentication.getCredentials();
-            UserForm userForm = loginService.login(username, password);
-            return new CustomUser(userForm.getUserId(), userForm.getPassword(), userForm.getUserName());
+            try {
+                UserForm userForm = loginService.login(username, password);
+                return new CustomUser(userForm.getUserId(), userForm.getPassword(), userForm.getUserName());
+            } catch(LoginException ex) {
+                throw new LoginException(ex.getMessage());
+            }
         } catch (Exception e) {
             this.setHideUserNotFoundExceptions(false);
-            // Exception
             throw new UsernameNotFoundException(e.getMessage(), e);
         }
     }
