@@ -1,19 +1,8 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.7.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+plugins {
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.sample'
@@ -26,21 +15,53 @@ repositories {
 
 ext {
     set('lombokVersion', '1.18.8')
+    set('domaVersion', '2.35.0')
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-devtools')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-    compile('org.webjars:bootstrap:4.3.1')
-    runtimeOnly('mysql:mysql-connector-java')
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.webjars:jquery:3.5.1'
+    implementation 'org.webjars:bootstrap:4.5.3'
 
-    implementation('org.seasar.doma.boot:doma-spring-boot-starter:1.4.0')
-    implementation('org.springframework.boot:spring-boot-starter-security')
-    implementation('org.springframework.security:spring-security-test')
-    annotationProcessor('org.seasar.doma:doma-processor:2.35.0')
-    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-    implementation("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+    testCompile 'org.springframework.security:spring-security-test'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+    // doma exclude springframework
+    implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.4.0'
+    annotationProcessor "org.seasar.doma:doma-processor:${domaVersion}"
+}
+
+// Copy the resources referred by the Doma annotation processors to
+// the destinationDir of the compileJava task
+task copyDomaResources(type: Sync)  {
+    from sourceSets.main.resources.srcDirs
+    into compileJava.destinationDir
+    include "doma.compile.config"
+    include "META-INF/**/*.sql"
+    include "META-INF/**/*.script"
+}
+
+compileJava {
+    // Depend on the above task
+    dependsOn copyDomaResources
+    options.encoding = "UTF-8"
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    // Disable the annotation processors during the test run
+    options.compilerArgs = ["-proc:none"]
 }
