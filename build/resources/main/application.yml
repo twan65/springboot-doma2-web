@@ -1,9 +1,4 @@
 
-doma:
-  dialect: MYSQL
-  query-timeout: 60
-  sql-file-repository: no_cache
-
 spring:
   profiles:
     active: local
@@ -12,5 +7,11 @@ spring:
     url: jdbc:mysql://localhost:3306/infodb
     username: infouser
     password: infopass
-  mvc:
-    throw-exception-if-no-handler-found: true
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+
+doma:
+  dialect: mysql
+  query-timeout: 60
+  sql-file-repository: no_cache
+

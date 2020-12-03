@@ -2,7 +2,6 @@ package com.sample.web.login.service;
 
 import com.sample.common.dao.LoginDao;
 import com.sample.common.entity.User;
-import com.sample.common.exception.LoginException;
 import com.sample.web.login.model.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

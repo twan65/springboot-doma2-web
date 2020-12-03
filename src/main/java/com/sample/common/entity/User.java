@@ -10,34 +10,34 @@ import org.seasar.doma.Table;
 import java.time.LocalDateTime;
 
 @Getter
-@Entity
+@Entity(immutable = true)
 @Table(name = "user")
 public class User {
 
     @Id
     @Column(name = "user_id")
-    private String userId;
+    private final String userId;
 
     @Column(name = "password")
-    private String password;
+    private final String password;
 
     @Column(name = "name")
-    private String name;
+    private final String name;
 
     @Column(name = "is_delete")
-    private Integer deleteFlg;
+    private final Integer deleteFlg;
 
     @Column(name = "create_id")
-    private String createId;
+    private final String createId;
 
     @Column(name = "update_id")
-    private String updateId;
+    private final String updateId;
 
     @Column(name = "create_date_time")
-    private LocalDateTime createDateTime;
+    private final LocalDateTime createDateTime;
 
     @Column(name = "update_date_time")
-    private LocalDateTime updateDateTime;
+    private final LocalDateTime updateDateTime;
 
     @Builder
     public User(String userId, String password, String name, Integer deleteFlg, String createId, String updateId, LocalDateTime createDateTime, LocalDateTime updateDateTime) {

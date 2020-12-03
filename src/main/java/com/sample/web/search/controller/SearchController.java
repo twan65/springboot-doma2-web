@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
+
 @Controller
 public class SearchController {
 
@@ -21,7 +22,6 @@ public class SearchController {
     @GetMapping("/search")
     public String findSearchData(@ModelAttribute SearchRequestForm searchRequestForm,
                                  @PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
-
 
         model.addAttribute("result", searchService.findSearchData(searchRequestForm, pageable));
 
