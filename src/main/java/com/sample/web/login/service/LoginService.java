@@ -44,7 +44,7 @@ public class LoginService{
 
     private boolean equalsPassword(String inputPassword, String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String p = bCryptPasswordEncoder.encode(password);
+        String p = bCryptPasswordEncoder.encode(inputPassword);
         return bCryptPasswordEncoder.matches(inputPassword, p);
     }
 

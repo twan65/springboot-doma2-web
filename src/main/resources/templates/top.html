@@ -4,29 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="context-path" th:content="@{/}"/>
-
-    <title>HM & SB Blog</title>
-
     <!--  Common header -->
     <th:block th:include="fragments/include-link"></th:block>
 </head>
 <body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <nav th:replace="fragments/sidebar"></nav>
+        <!-- /#sidebar-wrapper -->
 
-<div class="wrapper">
-    <!-- Side Bar -->
-    <nav th:replace="fragments/sidebar"></nav>
-    <div id="content">
-        <!-- Page Header -->
-        <header th:replace="fragments/header"></header>
-
-        <!-- Main Content -->
-
-
-        <!-- Footer -->
-        <footer th:replace="fragments/footer"></footer>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1 id="title" class="mt-4">top</h1>
+                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+            </div>
+            <footer th:replace="fragments/footer"></footer>
+        </div>
+        <!-- /#page-content-wrapper -->
     </div>
-
     <th:block th:include="fragments/include-script"></th:block>
-</div>
 </body>
 </html>

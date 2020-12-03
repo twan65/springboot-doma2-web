@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN = "/login";
-    private static final String TOP = "/";
+    private static final String TOP = "/top";
     private static final String LOGOUT = "/logout";
     private static final String[] STATIC_RESOURCE_URL_PATTERN = {
             "/css/**", "/js/**", "/webjars/**"
@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() // ログイン設定
                     .formLogin()
                     .loginPage(LOGIN)
-                    .defaultSuccessUrl(TOP)
+                    .defaultSuccessUrl(TOP, true)
                     .permitAll()
                 .and() // ログアウト設定
                     .logout()

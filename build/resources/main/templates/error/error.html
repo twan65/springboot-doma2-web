@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="context-path" th:content="@{/}"/>
+
+    <title>ERROR</title>
+
+    <!--  Common header -->
+    <th:block th:include="fragments/include-link"></th:block>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Side Bar -->
+    <nav th:replace="fragments/sidebar"></nav>
+    <div id="content">
+        <!-- Page Header -->
+        <header th:replace="fragments/header"></header>
+
+        <!-- Main Content -->
+        <h1>ERROR</h1>
+
+        <!-- Footer -->
+        <footer th:replace="fragments/footer"></footer>
+    </div>
+
+    <th:block th:include="fragments/include-script"></th:block>
+</div>
+</body>
+</html>

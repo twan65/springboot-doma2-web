@@ -12,17 +12,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    @GetMapping("/")
-    public String home() {
-        return ViewNames.TOP_PAGE;
-    }
-
     @GetMapping("/login")
     public String login(HttpSession session, Model model) {
-        if (session != null) {
-
-        }
-
         return ViewNames.LOGIN_PAGE;
     }
 }
