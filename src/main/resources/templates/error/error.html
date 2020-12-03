@@ -4,29 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="context-path" th:content="@{/}"/>
-
-    <title>ERROR</title>
-
     <!--  Common header -->
     <th:block th:include="fragments/include-link"></th:block>
 </head>
 <body>
-
-<div class="wrapper">
-    <!-- Side Bar -->
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
     <nav th:replace="fragments/sidebar"></nav>
-    <div id="content">
-        <!-- Page Header -->
-        <header th:replace="fragments/header"></header>
+    <!-- /#sidebar-wrapper -->
 
-        <!-- Main Content -->
-        <h1>ERROR</h1>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
 
-        <!-- Footer -->
+        <div class="container-fluid">
+            <h1 id="title" class="mt-4">ERROR</h1>
+        </div>
+
         <footer th:replace="fragments/footer"></footer>
     </div>
-
-    <th:block th:include="fragments/include-script"></th:block>
+    <!-- /#page-content-wrapper -->
 </div>
+<th:block th:include="fragments/include-script"></th:block>
 </body>
 </html>
