@@ -5,6 +5,7 @@ import com.sample.common.entity.SearchResponseEntity;
 import com.sample.web.search.model.SearchRequestForm;
 import com.sample.web.search.model.SearchResponseForm;
 import lombok.val;
+import org.seasar.doma.boot.Pageables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * お知らせ一覧のサービス
@@ -33,7 +33,8 @@ public class SearchService {
 
         if (count > 0) {
             // 検索データを取得する。
-            val responseEntityList = searchDao.selectInformationListBy(searchEntity);
+            val options = Pageables.toSelectOptions(pageable);
+            val responseEntityList = searchDao.selectInformationListBy(searchEntity, options);
             for (SearchResponseEntity entity : responseEntityList) {
                 // お知らせ種別を取得し、セット
                 entity.setInformationTypeList(searchDao.selectInformationTypeListBy(entity.getId()));

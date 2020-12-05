@@ -17,30 +17,30 @@ public class SearchEntity {
     private String overview;
 
     // 掲載開始日FROM
-    private String publicationStartDateFrom;
+    private String displayStartDateFrom;
 
     // 掲載開始日TO
-    private String publicationStartDateTo;
+    private String displayStartDateTo;
 
     // 掲載終了日FROM
-    private String publicationEndDateFrom;
+    private String displayEndDateFrom;
 
     // 掲載終了日TO
-    private String publicationEndDateTo;
+    private String displayEndDateTo;
 
     // お知らせタイプリスト
     private List<Integer> informationTypeList;
 
 
     @Builder
-    public SearchEntity(String title, String overview, String publicationStartDateFrom, String publicationStartDateTo
-    , String publicationEndDateFrom, String publicationEndDateTo, List<Integer> informationTypeList) {
+    public SearchEntity(String title, String overview, String displayStartDateFrom, String displayStartDateTo
+    , String displayEndDateFrom, String displayEndDateTo, List<Integer> informationTypeList) {
         this.title = title;
         this.overview = overview;
-        this.publicationStartDateFrom = publicationStartDateFrom;
-        this.publicationStartDateTo = publicationStartDateTo;
-        this.publicationEndDateFrom = publicationEndDateFrom;
-        this.publicationEndDateTo = publicationEndDateTo;
+        this.displayStartDateFrom = displayStartDateFrom;
+        this.displayStartDateTo = displayStartDateTo;
+        this.displayEndDateFrom = displayEndDateFrom;
+        this.displayEndDateTo = displayEndDateTo;
         this.informationTypeList = informationTypeList;
     }
 }

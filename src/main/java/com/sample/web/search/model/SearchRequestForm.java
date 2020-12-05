@@ -22,19 +22,19 @@ public class SearchRequestForm {
 
     // 掲載開始日FROM
     // TODO: DataFormatValidation
-    private String publicationStartDateFrom;
+    private String displayStartDateFrom;
 
     // 掲載開始日TO
     // TODO: DataFormatValidation
-    private String publicationStartDateTo;
+    private String displayStartDateTo;
 
     // 掲載終了日FROM
     // TODO: DataFormatValidation
-    private String publicationEndDateFrom;
+    private String displayEndDateFrom;
 
     // 掲載終了日TO
     // TODO: DataFormatValidation
-    private String publicationEndDateTo;
+    private String displayEndDateTo;
 
     // お知らせタイプリスト
     private List<@Min(value = 1, message = "入力したコードは存在しません") @Max(value = 4, message = "入力したコードは存在しません") Integer> informationTypeList;
@@ -48,10 +48,10 @@ public class SearchRequestForm {
         return SearchEntity.builder()
                 .title(title)
                 .overview(overview)
-                .publicationStartDateFrom(publicationStartDateFrom)
-                .publicationStartDateTo(publicationStartDateTo)
-                .publicationEndDateFrom(publicationEndDateFrom)
-                .publicationEndDateTo(publicationEndDateTo)
+                .displayStartDateFrom(displayStartDateFrom)
+                .displayStartDateTo(displayStartDateTo)
+                .displayEndDateFrom(displayEndDateFrom)
+                .displayEndDateTo(displayEndDateTo)
                 .informationTypeList(informationTypeList)
                 .build();
     }

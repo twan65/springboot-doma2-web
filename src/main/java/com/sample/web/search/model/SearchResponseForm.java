@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -28,6 +29,9 @@ public class SearchResponseForm {
     // お知らせタイプリスト
     private List<Integer> informationTypeList;
 
+    // 登録日
+    private LocalDateTime createDateTime;
+
     @Builder
     public SearchResponseForm(SearchResponseEntity entity) {
         this.id = entity.getId();
@@ -36,6 +40,8 @@ public class SearchResponseForm {
         this.publicationStartDate = entity.getPublicationStartDate();
         this.publicationEndDate = entity.getPublicationEndDate();
         this.informationTypeList = entity.getInformationTypeList();
+        this.createDateTime = entity.getCreateDateTime();
+
     }
 
 }

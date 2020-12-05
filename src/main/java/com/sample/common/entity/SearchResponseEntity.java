@@ -3,9 +3,11 @@ package com.sample.common.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -22,22 +24,29 @@ public class SearchResponseEntity {
     private String overview;
 
     // 掲載開始日
-    private LocalDate publicationStartDate;
+    @Column(name = "display_start_date")
+    private LocalDate displayStartDate;
 
     // 掲載終了日
-    private LocalDate publicationEndDate;
+    @Column(name = "display_end_date")
+    private LocalDate displayEndDate;
 
     // お知らせタイプリスト
     @Setter
     private List<Integer> informationTypeList;
 
+    // 登録日
+    @Column(name = "create_date_time")
+    private LocalDateTime createDateTime;
+
     @Builder
-    public SearchResponseEntity(Integer id, String title, String overview, LocalDate publicationStartDate
-    , LocalDate publicationEndDate) {
+    public SearchResponseEntity(Integer id, String title, String overview, LocalDate displayStartDate
+    , LocalDate displayEndDate, LocalDateTime createDateTime) {
         this.id = id;
         this.title = title;
         this.overview = overview;
-        this.publicationStartDate = publicationStartDate;
-        this.publicationEndDate = publicationEndDate;
+        this.displayStartDate = displayStartDate;
+        this.displayEndDate = displayEndDate;
+        this.createDateTime = createDateTime;
     }
 }
