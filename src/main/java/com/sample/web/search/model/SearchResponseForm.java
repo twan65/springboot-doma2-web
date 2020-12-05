@@ -21,10 +21,10 @@ public class SearchResponseForm {
     private String overview;
 
     // 掲載開始日
-    private LocalDate publicationStartDate;
+    private LocalDate displayStartDate;
 
     // 掲載終了日
-    private LocalDate publicationEndDate;
+    private LocalDate displayEndDate;
 
     // お知らせタイプリスト
     private List<Integer> informationTypeList;
@@ -37,8 +37,8 @@ public class SearchResponseForm {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.overview = entity.getOverview();
-        this.publicationStartDate = entity.getPublicationStartDate();
-        this.publicationEndDate = entity.getPublicationEndDate();
+        this.displayStartDate = entity.getDisplayStartDate();
+        this.displayEndDate = entity.getDisplayEndDate();
         this.informationTypeList = entity.getInformationTypeList();
         this.createDateTime = entity.getCreateDateTime();
 
