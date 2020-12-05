@@ -43,12 +43,7 @@ public class LoggingAspect {
      */
     @Before("publicLog() && (dbLog() || controllerLog() || serviceLog())")
     public void doBefore(JoinPoint jp) {
-
         Signature sig = jp.getSignature();
-        String args = "無し";
-        if(jp.getArgs() != null && jp.getArgs().length > 0 ) {
-            args = Arrays.toString(jp.getArgs());
-        }
         log.info("【操作開始】クラス名：" + jp.getTarget().getClass().toString() + "." + "メソッド："+sig.getDeclaringTypeName());
     }
 
@@ -58,7 +53,7 @@ public class LoggingAspect {
      * @param jp ジョインポイント
      */
     @AfterReturning(pointcut="publicLog() && (dbLog() || controllerLog() || serviceLog())", returning="returnValue")
-    public void doAfterReturning(JoinPoint jp,Object returnValue) {
+    public void doAfterReturning(JoinPoint jp, Object returnValue) {
         Signature sig = jp.getSignature();
         log.info("【操作終了】クラス名：" + jp.getTarget().getClass().toString() + "." + "メソッド："+sig.getDeclaringTypeName() + "."+sig.getName()+"#戻り値：" + returnValue);
     }
@@ -69,7 +64,7 @@ public class LoggingAspect {
      * @param jp ジョインポイント
      */
     @AfterThrowing (pointcut="publicLog() && (dbLog() || controllerLog() || serviceLog())",throwing="ex")
-    public void doAfterThrowing(JoinPoint jp,Exception ex) {
+    public void doAfterThrowing(JoinPoint jp, Exception ex) {
         Signature sig = jp.getSignature();
         StringWriter erMessage=new StringWriter();
         ex.printStackTrace(new PrintWriter(erMessage));
