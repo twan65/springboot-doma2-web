@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * お知らせ一覧のサービス
@@ -41,8 +42,8 @@ public class SearchService {
             val responseEntityList = searchDao.selectInformationListBy(searchEntity, options);
             for (SearchResponseEntity entity : responseEntityList) {
                 // お知らせ種別を取得し、セット
-                entity.setInformationTypeList(informationTypeDao.selectInformationTypeListBy(entity.getId()));
-                searchResponseFormList.add(SearchResponseForm.builder().entity(entity).build());
+                List<Integer> informationTypes = informationTypeDao.selectInformationTypeListBy(entity.getId());
+                searchResponseFormList.add(SearchResponseForm.builder().entity(entity).informationTypeList(informationTypes).build());
             }
         }
 

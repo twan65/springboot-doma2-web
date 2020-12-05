@@ -2,14 +2,14 @@ package com.sample.common.entity;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Entity
 public class SearchResponseEntity {
@@ -30,10 +30,6 @@ public class SearchResponseEntity {
     // 掲載終了日
     @Column(name = "display_end_date")
     private LocalDate displayEndDate;
-
-    // お知らせタイプリスト
-    @Setter
-    private List<Integer> informationTypeList;
 
     // 登録日
     @Column(name = "create_date_time")

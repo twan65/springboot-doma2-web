@@ -1,13 +1,10 @@
 package com.sample.common.entity;
 
 import lombok.Builder;
-import org.seasar.doma.Entity;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.util.List;
 
-@Entity
+//@Entity
 public class SearchEntity {
 
     // タイトル
@@ -30,7 +27,6 @@ public class SearchEntity {
 
     // お知らせタイプリスト
     private List<Integer> informationTypeList;
-
 
     @Builder
     public SearchEntity(String title, String overview, String displayStartDateFrom, String displayStartDateTo

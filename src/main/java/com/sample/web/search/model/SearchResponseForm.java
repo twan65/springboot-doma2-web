@@ -1,5 +1,6 @@
 package com.sample.web.search.model;
 
+import com.sample.common.constant.InformationType;
 import com.sample.common.entity.SearchResponseEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,20 +28,20 @@ public class SearchResponseForm {
     private LocalDate displayEndDate;
 
     // お知らせタイプリスト
-    private List<Integer> informationTypeList;
+    private List<String> informationTypeList;
 
     // 登録日
     private LocalDateTime createDateTime;
 
     @Builder
-    public SearchResponseForm(SearchResponseEntity entity) {
+    public SearchResponseForm(SearchResponseEntity entity, List<Integer> informationTypeList) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.overview = entity.getOverview();
         this.displayStartDate = entity.getDisplayStartDate();
         this.displayEndDate = entity.getDisplayEndDate();
-        this.informationTypeList = entity.getInformationTypeList();
         this.createDateTime = entity.getCreateDateTime();
+        this.informationTypeList = InformationType.convertCodesToLabels(informationTypeList);
 
     }
 
