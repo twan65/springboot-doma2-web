@@ -19,5 +19,4 @@ public interface InformationDao {
     @Select
     List<SearchResponseEntity> selectInformationListBy(SearchEntity entity, SelectOptions options);
 
-
 }

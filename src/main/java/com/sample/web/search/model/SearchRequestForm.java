@@ -1,6 +1,7 @@
 package com.sample.web.search.model;
 
 import com.sample.common.entity.SearchEntity;
+import com.sample.common.validation.DateFormatValid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,19 +22,19 @@ public class SearchRequestForm {
     private String overview;
 
     // 掲載開始日FROM
-    // TODO: DataFormatValidation
+    @DateFormatValid
     private String displayStartDateFrom;
 
     // 掲載開始日TO
-    // TODO: DataFormatValidation
+    @DateFormatValid
     private String displayStartDateTo;
 
     // 掲載終了日FROM
-    // TODO: DataFormatValidation
+    @DateFormatValid
     private String displayEndDateFrom;
 
     // 掲載終了日TO
-    // TODO: DataFormatValidation
+    @DateFormatValid
     private String displayEndDateTo;
 
     // お知らせタイプリスト
