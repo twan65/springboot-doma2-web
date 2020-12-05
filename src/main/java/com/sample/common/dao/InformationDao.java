@@ -11,7 +11,7 @@ import java.util.List;
 
 @ConfigAutowireable
 @Dao
-public interface SearchDao {
+public interface InformationDao {
 
     @Select
     Integer countSearchTargetBy(SearchEntity entity);
@@ -19,7 +19,5 @@ public interface SearchDao {
     @Select
     List<SearchResponseEntity> selectInformationListBy(SearchEntity entity, SelectOptions options);
 
-    @Select
-    List<Integer> selectInformationTypeListBy(Integer informationId);
 
 }

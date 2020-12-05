@@ -1,6 +1,7 @@
 package com.sample.web.search.service;
 
-import com.sample.common.dao.SearchDao;
+import com.sample.common.dao.InformationDao;
+import com.sample.common.dao.InformationTypeDao;
 import com.sample.common.entity.SearchResponseEntity;
 import com.sample.web.search.model.SearchRequestForm;
 import com.sample.web.search.model.SearchResponseForm;
@@ -21,7 +22,10 @@ import java.util.ArrayList;
 public class SearchService {
 
     @Autowired
-    private SearchDao searchDao;
+    private InformationDao searchDao;
+
+    @Autowired
+    private InformationTypeDao informationTypeDao;
 
     public Page<SearchResponseForm> findSearchData(SearchRequestForm form, Pageable pageable) {
 
@@ -37,7 +41,7 @@ public class SearchService {
             val responseEntityList = searchDao.selectInformationListBy(searchEntity, options);
             for (SearchResponseEntity entity : responseEntityList) {
                 // お知らせ種別を取得し、セット
-                entity.setInformationTypeList(searchDao.selectInformationTypeListBy(entity.getId()));
+                entity.setInformationTypeList(informationTypeDao.selectInformationTypeListBy(entity.getId()));
                 searchResponseFormList.add(SearchResponseForm.builder().entity(entity).build());
             }
         }
