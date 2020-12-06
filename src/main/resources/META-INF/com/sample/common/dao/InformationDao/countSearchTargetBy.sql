@@ -1,7 +1,7 @@
 SELECT
     COUNT(I.id)
 FROM
-    information IF
+    information I
 WHERE
     I.is_delete = 0
 AND EXISTS (

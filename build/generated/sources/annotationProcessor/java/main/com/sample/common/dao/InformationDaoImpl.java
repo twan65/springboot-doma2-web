@@ -2,7 +2,7 @@ package com.sample.common.dao;
 
 /** */
 @org.springframework.stereotype.Repository()
-@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-06T20:29:08.676+0900")
+@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-06T20:41:10.709+0900")
 public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.sample.common.dao.InformationDao {
 
     static {
