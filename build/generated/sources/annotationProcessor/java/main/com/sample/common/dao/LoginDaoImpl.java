@@ -2,7 +2,7 @@ package com.sample.common.dao;
 
 /** */
 @org.springframework.stereotype.Repository()
-@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-05T17:40:26.295+0900")
+@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-06T20:29:08.607+0900")
 public class LoginDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.sample.common.dao.LoginDao {
 
     static {

@@ -8,7 +8,9 @@ AND EXISTS (
     SELECT IFT.information_type
     FROM information_type IFT
     WHERE IF.id = IFT.information_type_id
-    AND IFT.information_type IN /* entity.informationTypeList */(0)
+    /*%if entity.informationTypeList != null */
+        AND IFT.information_type IN /* entity.informationTypeList */(0)
+    /*%end*/
 )
 /*%if entity.title != null */
     AND
