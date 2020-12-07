@@ -7,13 +7,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.net.BindException;
+
 @Slf4j
 @ControllerAdvice
 public class AppControllerAdvice {
 
     @Autowired
     public  AppControllerAdvice(){
+        // 処理なし　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+    }
 
+    @ExceptionHandler(BindException.class)
+    public String handleBindException(Exception e, Model model) {
+        log.error(e.getMessage());
+        return ViewNames.ERROR_PAGE;
     }
 
     @ExceptionHandler(Exception.class)
