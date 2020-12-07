@@ -16,35 +16,38 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * お知らせ一覧のサービス
- */
+/** お知らせ一覧のサービス */
 @RequiredArgsConstructor
 @Service
 public class SearchService {
 
-    private final InformationDao searchDao;
-    private final InformationTypeDao informationTypeDao;
+  private final InformationDao searchDao;
+  private final InformationTypeDao informationTypeDao;
 
-    public Page<SearchResponseForm> findSearchData(SearchRequestForm form, Pageable pageable) {
+  public Page<SearchResponseForm> findSearchData(SearchRequestForm form, Pageable pageable) {
 
-        val searchEntity = form.toEntity();
-        val searchResponseFormList = new ArrayList<SearchResponseForm>();
+    val searchEntity = form.toEntity();
+    val searchResponseFormList = new ArrayList<SearchResponseForm>();
 
-        // 検索対象の件数を取得
-        Integer count = searchDao.countSearchTargetBy(searchEntity);
+    // 検索対象の件数を取得
+    Integer count = searchDao.countSearchTargetBy(searchEntity);
 
-        if (count > 0) {
-            // 検索データを取得する。
-            val options = Pageables.toSelectOptions(pageable);
-            val responseEntityList = searchDao.selectInformationListBy(searchEntity, options);
-            for (SearchResponseEntity entity : responseEntityList) {
-                // お知らせ種別を取得し、セット
-                List<Integer> informationTypes = informationTypeDao.selectInformationTypeListBy(entity.getId());
-                searchResponseFormList.add(SearchResponseForm.builder().entity(entity).informationTypeList(informationTypes).build());
-            }
-        }
-
-        return new PageImpl<>(searchResponseFormList, pageable,count);
+    if (count > 0) {
+      // 検索データを取得する。
+      val options = Pageables.toSelectOptions(pageable);
+      val responseEntityList = searchDao.selectInformationListBy(searchEntity, options);
+      for (SearchResponseEntity entity : responseEntityList) {
+        // お知らせ種別を取得し、セット
+        List<Integer> informationTypes =
+            informationTypeDao.selectInformationTypeListBy(entity.getId());
+        searchResponseFormList.add(
+            SearchResponseForm.builder()
+                .entity(entity)
+                .informationTypeList(informationTypes)
+                .build());
+      }
     }
+
+    return new PageImpl<>(searchResponseFormList, pageable, count);
+  }
 }

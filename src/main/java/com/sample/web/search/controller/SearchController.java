@@ -14,27 +14,27 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-
-/**
- * お知らせ一覧コントローラー
- */
+/** お知らせ一覧コントローラー */
 @RequiredArgsConstructor
 @Controller
 public class SearchController {
 
-    private final SearchService searchService;
+  private final SearchService searchService;
 
-    @GetMapping("/search")
-    public String findSearchData(@ModelAttribute @Validated SearchRequestForm searchRequestForm, BindingResult bindResult,
-                                 @PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+  @GetMapping("/search")
+  public String findSearchData(
+      @ModelAttribute @Validated SearchRequestForm searchRequestForm,
+      BindingResult bindResult,
+      @PageableDefault(page = 0, size = 10) Pageable pageable,
+      Model model) {
 
-        model.addAttribute("informationTypes", InformationType.values());
+    model.addAttribute("informationTypes", InformationType.values());
 
-        if (bindResult.hasErrors()) {
-            return ViewNames.SEARCH_PAGE;
-        }
-
-        model.addAttribute("result", searchService.findSearchData(searchRequestForm, pageable));
-        return ViewNames.SEARCH_PAGE;
+    if (bindResult.hasErrors()) {
+      return ViewNames.SEARCH_PAGE;
     }
+
+    model.addAttribute("result", searchService.findSearchData(searchRequestForm, pageable));
+    return ViewNames.SEARCH_PAGE;
+  }
 }
