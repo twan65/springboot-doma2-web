@@ -5,9 +5,9 @@ import com.sample.common.dao.InformationTypeDao;
 import com.sample.common.entity.SearchResponseEntity;
 import com.sample.web.search.model.SearchRequestForm;
 import com.sample.web.search.model.SearchResponseForm;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.seasar.doma.boot.Pageables;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,14 +19,12 @@ import java.util.List;
 /**
  * お知らせ一覧のサービス
  */
+@RequiredArgsConstructor
 @Service
 public class SearchService {
 
-    @Autowired
-    private InformationDao searchDao;
-
-    @Autowired
-    private InformationTypeDao informationTypeDao;
+    private final InformationDao searchDao;
+    private final InformationTypeDao informationTypeDao;
 
     public Page<SearchResponseForm> findSearchData(SearchRequestForm form, Pageable pageable) {
 
