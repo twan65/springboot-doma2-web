@@ -17,6 +17,7 @@ public class InformationTypeEntity {
     @Column(name = "information_type_id")
     private long tableId;
 
+    @Id
     @Column(name = "information_type")
     private Integer informationType;
 
