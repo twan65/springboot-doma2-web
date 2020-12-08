@@ -1,10 +1,14 @@
 package com.sample.web.post.model;
 
+import com.sample.common.constant.DeleteFlag;
+import com.sample.common.entity.InformationEntity;
+import com.sample.common.utils.DateConverter;
 import com.sample.common.validation.DateFormatValid;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -37,4 +41,18 @@ public class PostRequestForm {
     // お知らせタイプリスト
     @NotNull(message = "{VE00001}")
     private List<@Min(value = 1, message = "{VE00006}") @Max(value = 4, message = "{VE00006}") Integer> informationTypeList;
+
+    public InformationEntity toEntity(String userId) {
+    return InformationEntity.builder()
+        .title(title)
+        .overview(overview)
+        .displayStartDate(DateConverter.convertStringToLocalDate(displayStartDate))
+        .displayEndDate(DateConverter.convertStringToLocalDate(displayEndDate))
+        .isDelete(DeleteFlag.NOT_DELETE.getFlag())
+        .createId(userId)
+        .updateId(userId)
+        .createDateTime(LocalDateTime.now())
+        .updateDateTime(LocalDateTime.now())
+        .build();
+    }
 }
