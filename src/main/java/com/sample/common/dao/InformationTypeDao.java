@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface InformationTypeDao {
 
-    @Insert(sqlFile = true)
+    @Insert
     int insertInformationType(InformationTypeEntity entity);
 
     @Select

@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface InformationDao {
 
-    @Insert(sqlFile = true)
+    @Insert
     int insertInformation(InformationEntity entity);
 
     @Select

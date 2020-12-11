@@ -79,7 +79,7 @@ public class PostController {
   /**
    * お知らせを登録する。
    * @param postRequestForm お知らせ登録フォーム
-   * @param bindingResult
+   * @param bindingResult 
    * @param user ログインユーザー情報
    * @param redirectAttributes リダイレクトモデル
    * @param model
