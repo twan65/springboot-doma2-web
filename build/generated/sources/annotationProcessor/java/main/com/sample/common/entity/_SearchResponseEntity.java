@@ -1,7 +1,7 @@
 package com.sample.common.entity;
 
 /** */
-@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-09T21:30:32.233+0900")
+@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-14T21:27:27.494+0900")
 public final class _SearchResponseEntity extends org.seasar.doma.jdbc.entity.AbstractEntityType<com.sample.common.entity.SearchResponseEntity> {
 
     static {

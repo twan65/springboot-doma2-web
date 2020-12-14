@@ -21,12 +21,12 @@ public class PostRequestForm {
 
   // タイトル
   @NotBlank(message = "{VE00001}")
-  @Max(value = 30, message = "{VE00002}")
+  @Size(max = 30, message = "{VE00002}")
   private String title;
 
   // お知らせ概要
   @NotBlank(message = "{VE00001}")
-  @Max(value = 300, message = "{VE00002}")
+  @Size(max = 300, message = "{VE00002}")
   private String overview;
 
   // 掲載開始日
@@ -59,14 +59,15 @@ public class PostRequestForm {
         .build();
   }
 
-  public InformationTypeEntity toInformationTypeEntity(long tableId, Integer informationType, String userId) {
+  public InformationTypeEntity toInformationTypeEntity(
+      long tableId, Integer informationType, String userId) {
     return InformationTypeEntity.builder()
-            .tableId(tableId)
-            .informationType(informationType)
-            .createId(userId)
-            .updateId(userId)
-            .createDateTime(LocalDateTime.now())
-            .updateDateTime(LocalDateTime.now())
-            .build();
+        .tableId(tableId)
+        .informationType(informationType)
+        .createId(userId)
+        .updateId(userId)
+        .createDateTime(LocalDateTime.now())
+        .updateDateTime(LocalDateTime.now())
+        .build();
   }
 }
