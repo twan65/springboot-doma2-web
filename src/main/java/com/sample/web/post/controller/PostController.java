@@ -41,12 +41,12 @@ public class PostController {
   @GetMapping("/post")
   public String index(
       @ModelAttribute PostRequestForm postRequestForm,
-      @ModelAttribute boolean saveResult,
+      @ModelAttribute String saveResult,
       Model model) {
 
     model.addAttribute(INFORMATION_TYPE_LIST_ATTR, InformationType.values());
 
-    if (saveResult) {
+    if (Boolean.valueOf(saveResult)) {
       model.addAttribute(INFO_MESSAGE_ATTR, messageSource.getMessage("SU00001", null, null));
     }
 
@@ -79,7 +79,7 @@ public class PostController {
   /**
    * お知らせを登録する。
    * @param postRequestForm お知らせ登録フォーム
-   * @param bindingResult 
+   * @param bindingResult
    * @param user ログインユーザー情報
    * @param redirectAttributes リダイレクトモデル
    * @param model
@@ -100,7 +100,7 @@ public class PostController {
 
     postService.save(postRequestForm, user.getUserId());
 
-    redirectAttributes.addAttribute(SAVE_RESULT_ATTR, true);
+    redirectAttributes.addAttribute(SAVE_RESULT_ATTR, "true");
     return REDIRECT_POST;
   }
 }
