@@ -5,10 +5,12 @@ import com.sample.common.dao.InformationTypeDao;
 import com.sample.common.entity.InformationEntity;
 import com.sample.web.post.model.PostRequestForm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -26,5 +28,7 @@ public class PostService {
       informationTypeDao.insertInformationType(
           postRequestForm.toInformationTypeEntity(informationId, type, userId));
     }
+
+    log.info("お知らせ登録ID：" + informationId);
   }
 }

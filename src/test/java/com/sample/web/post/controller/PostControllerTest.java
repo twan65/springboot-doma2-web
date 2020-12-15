@@ -2,7 +2,6 @@ package com.sample.web.post.controller;
 
 import com.sample.common.constant.ViewNames;
 import com.sample.web.post.model.PostRequestForm;
-import com.sample.web.search.model.SearchRequestForm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -76,9 +75,9 @@ public class PostControllerTest {
     PostRequestForm form = getPostRequestForm();
 
     mockMvc
-            .perform(post(URL_POST_CONFIRM).flashAttr(FORM_NAME_POST, form))
-            .andExpect(status().is2xxSuccessful())
-            .andExpect(view().name(ViewNames.POST_CONFIRM_PAGE));
+        .perform(post(URL_POST_CONFIRM).flashAttr(FORM_NAME_POST, form))
+        .andExpect(status().is2xxSuccessful())
+        .andExpect(view().name(ViewNames.POST_CONFIRM_PAGE));
   }
 
   @Test
