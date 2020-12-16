@@ -15,6 +15,9 @@ import java.util.List;
 @Dao
 public interface InformationDao {
 
+    @Select
+    InformationEntity selectNotDeleteById(Integer id);
+
     @Insert
     int insertInformation(InformationEntity entity);
 

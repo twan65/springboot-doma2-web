@@ -1,6 +1,8 @@
 package com.sample.web.post.controller;
 
 import com.sample.common.constant.ViewNames;
+import com.sample.common.entity.InformationEntity;
+import com.sample.common.utils.DateConverter;
 import com.sample.web.post.model.PostRequestForm;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -287,14 +290,21 @@ public class PostControllerTest {
   }
 
   private PostRequestForm getPostRequestForm() {
-    return new PostRequestForm() {
-      {
-        setTitle("title");
-        setOverview("overview");
-        setDisplayStartDate("2020年12月16日");
-        setDisplayEndDate("2020年12月20日");
-        setInformationTypeList(Arrays.asList(1, 2));
-      }
-    };
+    InformationEntity entity =
+        InformationEntity.builder()
+            .title("title")
+            .overview("overview")
+            .displayStartDate(DateConverter.convertStringToLocalDate("2020年12月16日"))
+            .displayEndDate(DateConverter.convertStringToLocalDate("2020年12月20日"))
+            .isDelete(0)
+            .createId("testId")
+            .updateId("updateId")
+            .createDateTime(LocalDateTime.now())
+            .updateDateTime(LocalDateTime.now())
+            .build();
+    return PostRequestForm.builder()
+        .entity(entity)
+        .informationTypeList(Arrays.asList(1, 2))
+        .build();
   }
 }

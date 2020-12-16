@@ -1,7 +1,7 @@
 package com.sample.common.entity;
 
 /** */
-@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-14T21:27:27.457+0900")
+@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-16T20:57:18.839+0900")
 public final class _InformationEntity extends org.seasar.doma.jdbc.entity.AbstractEntityType<com.sample.common.entity.InformationEntity> {
 
     static {
@@ -59,7 +59,7 @@ public final class _InformationEntity extends org.seasar.doma.jdbc.entity.Abstra
     }
 
     private void initializeMaps(java.util.Map<String, org.seasar.doma.jdbc.entity.EntityPropertyType<com.sample.common.entity.InformationEntity, ?>> __map, java.util.Map<String, org.seasar.doma.jdbc.entity.EmbeddedPropertyType<com.sample.common.entity.InformationEntity, ?>> __embeddedMap) {
-        __map.put("id", new org.seasar.doma.jdbc.entity.GeneratedIdPropertyType<com.sample.common.entity.InformationEntity, java.lang.Long, java.lang.Long>(com.sample.common.entity.InformationEntity.class, () -> new org.seasar.doma.internal.jdbc.scalar.BasicScalar<>(new org.seasar.doma.wrapper.PrimitiveLongWrapper()), "id", "", __namingType, false, __idGenerator));
+        __map.put("id", new org.seasar.doma.jdbc.entity.GeneratedIdPropertyType<com.sample.common.entity.InformationEntity, java.lang.Integer, java.lang.Integer>(com.sample.common.entity.InformationEntity.class, () -> new org.seasar.doma.internal.jdbc.scalar.BasicScalar<>(new org.seasar.doma.wrapper.IntegerWrapper()), "id", "", __namingType, false, __idGenerator));
         __map.put("title", new org.seasar.doma.jdbc.entity.DefaultPropertyType<com.sample.common.entity.InformationEntity, java.lang.String, java.lang.String>(com.sample.common.entity.InformationEntity.class, () -> new org.seasar.doma.internal.jdbc.scalar.BasicScalar<>(new org.seasar.doma.wrapper.StringWrapper()), "title", "", __namingType, true, true, false));
         __map.put("overview", new org.seasar.doma.jdbc.entity.DefaultPropertyType<com.sample.common.entity.InformationEntity, java.lang.String, java.lang.String>(com.sample.common.entity.InformationEntity.class, () -> new org.seasar.doma.internal.jdbc.scalar.BasicScalar<>(new org.seasar.doma.wrapper.StringWrapper()), "overview", "", __namingType, true, true, false));
         __map.put("displayStartDate", new org.seasar.doma.jdbc.entity.DefaultPropertyType<com.sample.common.entity.InformationEntity, java.time.LocalDate, java.time.LocalDate>(com.sample.common.entity.InformationEntity.class, () -> new org.seasar.doma.internal.jdbc.scalar.BasicScalar<>(new org.seasar.doma.wrapper.LocalDateWrapper()), "displayStartDate", "display_start_date", __namingType, true, true, false));

@@ -5,13 +5,16 @@ import com.sample.common.entity.InformationEntity;
 import com.sample.common.entity.InformationTypeEntity;
 import com.sample.common.utils.DateConverter;
 import com.sample.common.validation.DateFormatValid;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class PostRequestForm {
@@ -44,6 +47,16 @@ public class PostRequestForm {
   private List<
           @Min(value = 1, message = "{VE00006}") @Max(value = 4, message = "{VE00006}") Integer>
       informationTypeList;
+
+  @Builder
+  public PostRequestForm(InformationEntity entity, List<Integer> informationTypeList) {
+    id = entity.getId();
+    title = entity.getTitle();
+    overview = entity.getOverview();
+    displayStartDate = DateConverter.convertLocalDateToString(entity.getDisplayStartDate());
+    displayEndDate = DateConverter.convertLocalDateToString(entity.getDisplayEndDate());
+    this.informationTypeList = informationTypeList;
+  }
 
   public InformationEntity toInformationEntity(String userId) {
     return InformationEntity.builder()
