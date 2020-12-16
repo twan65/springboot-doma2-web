@@ -7,6 +7,7 @@ public class ViewNames {
     public final static String POST_PAGE = "post/post";
     public final static String POST_CONFIRM_PAGE = "post/postConfirm";
     public final static String EDIT_PAGE = "edit/edit";
+    public final static String EDIT_CONFIRM_PAGE = "post/editConfirm";
     public final static String SEARCH_PAGE = "search/search";
     public final static String ERROR_PAGE = "error/error";
 }
