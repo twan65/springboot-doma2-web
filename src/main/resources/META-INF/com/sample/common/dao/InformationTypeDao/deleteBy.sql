@@ -1,5 +1,4 @@
-SELECT
-    information_type
+DELETE
 FROM
     information_type
 WHERE

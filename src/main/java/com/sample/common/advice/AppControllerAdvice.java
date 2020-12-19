@@ -3,7 +3,6 @@ package com.sample.common.advice;
 import com.sample.common.constant.ViewNames;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -19,13 +18,13 @@ public class AppControllerAdvice {
     }
 
     @ExceptionHandler(BindException.class)
-    public String handleBindException(Exception e, Model model) {
+    public String handleBindException(Exception e) {
         log.error(e.getMessage());
         return ViewNames.ERROR_PAGE;
     }
 
     @ExceptionHandler(Exception.class)
-    public String handleException(Exception e, Model model) {
+    public String handleException(Exception e) {
         log.error("エラー発生", e);
         return ViewNames.ERROR_PAGE;
     }

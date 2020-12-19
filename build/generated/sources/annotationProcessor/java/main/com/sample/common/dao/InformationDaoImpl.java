@@ -2,7 +2,7 @@ package com.sample.common.dao;
 
 /** */
 @org.springframework.stereotype.Repository()
-@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-16T20:57:19.036+0900")
+@javax.annotation.Generated(value = { "Doma", "2.35.0" }, date = "2020-12-19T18:07:53.623+0900")
 public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.sample.common.dao.InformationDao {
 
     static {
@@ -13,9 +13,11 @@ public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.Abstra
 
     private static final java.lang.reflect.Method __method1 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "insertInformation", com.sample.common.entity.InformationEntity.class);
 
-    private static final java.lang.reflect.Method __method2 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "countSearchTargetBy", com.sample.common.entity.SearchEntity.class);
+    private static final java.lang.reflect.Method __method2 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "updateBy", com.sample.common.entity.InformationEntity.class, java.lang.String.class);
 
-    private static final java.lang.reflect.Method __method3 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "selectInformationListBy", com.sample.common.entity.SearchEntity.class, org.seasar.doma.jdbc.SelectOptions.class);
+    private static final java.lang.reflect.Method __method3 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "countSearchTargetBy", com.sample.common.entity.SearchEntity.class);
+
+    private static final java.lang.reflect.Method __method4 = org.seasar.doma.internal.jdbc.dao.AbstractDao.getDeclaredMethod(com.sample.common.dao.InformationDao.class, "selectInformationListBy", com.sample.common.entity.SearchEntity.class, org.seasar.doma.jdbc.SelectOptions.class);
 
     /**
      * @param config the config
@@ -87,14 +89,50 @@ public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.Abstra
     }
 
     @Override
+    public int updateBy(com.sample.common.entity.InformationEntity entity, java.lang.String updateDateTime) {
+        entering("com.sample.common.dao.InformationDaoImpl", "updateBy", entity, updateDateTime);
+        try {
+            if (entity == null) {
+                throw new org.seasar.doma.DomaNullPointerException("entity");
+            }
+            org.seasar.doma.jdbc.query.SqlFileUpdateQuery __query = getQueryImplementors().createSqlFileUpdateQuery(__method2);
+            __query.setMethod(__method2);
+            __query.setConfig(__config);
+            __query.setSqlFilePath("META-INF/com/sample/common/dao/InformationDao/updateBy.sql");
+            __query.addParameter("entity", com.sample.common.entity.InformationEntity.class, entity);
+            __query.addParameter("updateDateTime", java.lang.String.class, updateDateTime);
+            __query.setCallerClassName("com.sample.common.dao.InformationDaoImpl");
+            __query.setCallerMethodName("updateBy");
+            __query.setQueryTimeout(-1);
+            __query.setSqlLogType(org.seasar.doma.jdbc.SqlLogType.FORMATTED);
+            __query.setEntityAndEntityType("entity", entity, com.sample.common.entity._InformationEntity.getSingletonInternal());
+            __query.setNullExcluded(false);
+            __query.setVersionIgnored(false);
+            __query.setIncludedPropertyNames();
+            __query.setExcludedPropertyNames();
+            __query.setUnchangedPropertyIncluded(false);
+            __query.setOptimisticLockExceptionSuppressed(false);
+            __query.prepare();
+            org.seasar.doma.jdbc.command.UpdateCommand __command = getCommandImplementors().createUpdateCommand(__method2, __query);
+            int __result = __command.execute();
+            __query.complete();
+            exiting("com.sample.common.dao.InformationDaoImpl", "updateBy", __result);
+            return __result;
+        } catch (java.lang.RuntimeException __e) {
+            throwing("com.sample.common.dao.InformationDaoImpl", "updateBy", __e);
+            throw __e;
+        }
+    }
+
+    @Override
     public java.lang.Integer countSearchTargetBy(com.sample.common.entity.SearchEntity entity) {
         entering("com.sample.common.dao.InformationDaoImpl", "countSearchTargetBy", entity);
         try {
             if (entity == null) {
                 throw new org.seasar.doma.DomaNullPointerException("entity");
             }
-            org.seasar.doma.jdbc.query.SqlFileSelectQuery __query = getQueryImplementors().createSqlFileSelectQuery(__method2);
-            __query.setMethod(__method2);
+            org.seasar.doma.jdbc.query.SqlFileSelectQuery __query = getQueryImplementors().createSqlFileSelectQuery(__method3);
+            __query.setMethod(__method3);
             __query.setConfig(__config);
             __query.setSqlFilePath("META-INF/com/sample/common/dao/InformationDao/countSearchTargetBy.sql");
             __query.addParameter("entity", com.sample.common.entity.SearchEntity.class, entity);
@@ -108,7 +146,7 @@ public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.Abstra
             __query.setFetchSize(-1);
             __query.setSqlLogType(org.seasar.doma.jdbc.SqlLogType.FORMATTED);
             __query.prepare();
-            org.seasar.doma.jdbc.command.SelectCommand<java.lang.Integer> __command = getCommandImplementors().createSelectCommand(__method2, __query, new org.seasar.doma.internal.jdbc.command.BasicSingleResultHandler<java.lang.Integer>(org.seasar.doma.wrapper.IntegerWrapper::new));
+            org.seasar.doma.jdbc.command.SelectCommand<java.lang.Integer> __command = getCommandImplementors().createSelectCommand(__method3, __query, new org.seasar.doma.internal.jdbc.command.BasicSingleResultHandler<java.lang.Integer>(org.seasar.doma.wrapper.IntegerWrapper::new));
             java.lang.Integer __result = __command.execute();
             __query.complete();
             exiting("com.sample.common.dao.InformationDaoImpl", "countSearchTargetBy", __result);
@@ -129,8 +167,8 @@ public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.Abstra
             if (options == null) {
                 throw new org.seasar.doma.DomaNullPointerException("options");
             }
-            org.seasar.doma.jdbc.query.SqlFileSelectQuery __query = getQueryImplementors().createSqlFileSelectQuery(__method3);
-            __query.setMethod(__method3);
+            org.seasar.doma.jdbc.query.SqlFileSelectQuery __query = getQueryImplementors().createSqlFileSelectQuery(__method4);
+            __query.setMethod(__method4);
             __query.setConfig(__config);
             __query.setSqlFilePath("META-INF/com/sample/common/dao/InformationDao/selectInformationListBy.sql");
             __query.setOptions(options);
@@ -146,7 +184,7 @@ public class InformationDaoImpl extends org.seasar.doma.internal.jdbc.dao.Abstra
             __query.setFetchSize(-1);
             __query.setSqlLogType(org.seasar.doma.jdbc.SqlLogType.FORMATTED);
             __query.prepare();
-            org.seasar.doma.jdbc.command.SelectCommand<java.util.List<com.sample.common.entity.SearchResponseEntity>> __command = getCommandImplementors().createSelectCommand(__method3, __query, new org.seasar.doma.internal.jdbc.command.EntityResultListHandler<com.sample.common.entity.SearchResponseEntity>(com.sample.common.entity._SearchResponseEntity.getSingletonInternal()));
+            org.seasar.doma.jdbc.command.SelectCommand<java.util.List<com.sample.common.entity.SearchResponseEntity>> __command = getCommandImplementors().createSelectCommand(__method4, __query, new org.seasar.doma.internal.jdbc.command.EntityResultListHandler<com.sample.common.entity.SearchResponseEntity>(com.sample.common.entity._SearchResponseEntity.getSingletonInternal()));
             java.util.List<com.sample.common.entity.SearchResponseEntity> __result = __command.execute();
             __query.complete();
             exiting("com.sample.common.dao.InformationDaoImpl", "selectInformationListBy", __result);

@@ -3,6 +3,7 @@ package com.sample.common.utils;
 import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class DateConverter {
 
     private static String FORMAT_JAPAN_DATE = "yyyy年MM月dd日";
+    private static String FORMAT_SLASH_DATE_TIME = "yyyy/MM/dd HH:MM:ss";
 
     /**
      * 文字列の日付「yyyy年MM月dd日」をLocalDateに変換
@@ -39,5 +41,19 @@ public class DateConverter {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_JAPAN_DATE);
         return date.format(formatter);
+    }
+
+    /**
+     * LocalDateTimeを文字列の日付「yyyy/MM/dd HH:MM:ss」に変換
+     * @param dateTime LocalDate
+     * @return 文字列の日付「yyyy/MM/dd HH:MM:ss」
+     */
+    public static String convertLocalDateTimeToString(LocalDateTime dateTime) {
+        if (Objects.isNull(dateTime)) {
+            return null;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_SLASH_DATE_TIME);
+        return dateTime.format(formatter);
     }
 }

@@ -1,6 +1,7 @@
 package com.sample.web.post.controller;
 
 import com.sample.common.constant.InformationType;
+import com.sample.common.constant.MessageType;
 import com.sample.common.constant.ViewNames;
 import com.sample.web.login.model.CustomUser;
 import com.sample.web.post.model.PostRequestForm;
@@ -26,35 +27,28 @@ public class PostController {
   private final MessageSource messageSource;
 
   private static final String POST_REQUEST_FORM_ATTR = "postRequestForm";
-  private static final String SAVE_RESULT_ATTR = "saveResult";
-  private static final String INFO_MESSAGE_ATTR = "infoMessage";
   private static final String INFORMATION_TYPE_LIST_ATTR = "informationTypes";
   private static final String REDIRECT_POST = "redirect:/post";
 
   /**
    * お知らせ登録画面を返却する。
+   *
    * @param postRequestForm お知らせ登録フォーム
-   * @param saveResult お知らせ登録結果
    * @param model
    * @return
    */
   @GetMapping("/post")
   public String index(
       @ModelAttribute PostRequestForm postRequestForm,
-      @ModelAttribute String saveResult,
       Model model) {
 
     model.addAttribute(INFORMATION_TYPE_LIST_ATTR, InformationType.values());
-
-    if (Boolean.valueOf(saveResult)) {
-      model.addAttribute(INFO_MESSAGE_ATTR, messageSource.getMessage("SU00001", null, null));
-    }
-
     return ViewNames.POST_PAGE;
   }
 
   /**
    * お知らせ登録確認画面を返却します。
+   *
    * @param postRequestForm お知らせ登録フォーム
    * @param bindingResult
    * @param model
@@ -78,6 +72,7 @@ public class PostController {
 
   /**
    * お知らせを登録する。
+   *
    * @param postRequestForm お知らせ登録フォーム
    * @param bindingResult
    * @param user ログインユーザー情報
@@ -100,7 +95,10 @@ public class PostController {
 
     postService.save(postRequestForm, user.getUserId());
 
-    redirectAttributes.addAttribute(SAVE_RESULT_ATTR, "true");
+    // 正常登録のメッセージをセット
+    redirectAttributes.addAttribute(
+            MessageType.INFO_MESSAGE.name(), messageSource.getMessage("SU00001", null, null));
+
     return REDIRECT_POST;
   }
 }

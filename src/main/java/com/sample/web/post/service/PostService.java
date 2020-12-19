@@ -18,6 +18,11 @@ public class PostService {
   private final InformationDao informationDao;
   private final InformationTypeDao informationTypeDao;
 
+  /**
+   * お知らせ登録処理を行う。
+   * @param postRequestForm お知らせ情報
+   * @param userId ユーザーID
+   */
   @Transactional(rollbackFor = Exception.class)
   public void save(PostRequestForm postRequestForm, String userId) {
 

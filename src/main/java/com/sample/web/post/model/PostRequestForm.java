@@ -48,6 +48,9 @@ public class PostRequestForm {
           @Min(value = 1, message = "{VE00006}") @Max(value = 4, message = "{VE00006}") Integer>
       informationTypeList;
 
+  // 更新日
+  private String updateDateTime;
+
   @Builder
   public PostRequestForm(InformationEntity entity, List<Integer> informationTypeList) {
     id = entity.getId();
@@ -56,6 +59,7 @@ public class PostRequestForm {
     displayStartDate = DateConverter.convertLocalDateToString(entity.getDisplayStartDate());
     displayEndDate = DateConverter.convertLocalDateToString(entity.getDisplayEndDate());
     this.informationTypeList = informationTypeList;
+    updateDateTime = DateConverter.convertLocalDateTimeToString(entity.getUpdateDateTime());
   }
 
   public InformationEntity toInformationEntity(String userId) {
