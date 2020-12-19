@@ -1,5 +1,5 @@
 SELECT
-   information_type_id
+    information_type
 FROM
     information_type
 WHERE
