@@ -30,11 +30,11 @@ public class EditService {
    * @return お知らせ情報
    * @throws IllegalAccessException
    */
-  public PostRequestForm findById(Integer id) throws IllegalAccessException {
+  public PostRequestForm findById(Integer id) throws IllegalArgumentException {
 
     InformationEntity informationEntity = informationDao.selectNotDeleteById(id);
     if (Objects.isNull(informationEntity)) {
-      throw new IllegalAccessException("該当お知らせがありません。ID = " + id);
+      throw new IllegalArgumentException("該当お知らせがありません。ID = " + id);
     }
 
     List<Integer> informationTypeList = informationTypeDao.selectInformationTypeListBy(id);
@@ -52,7 +52,7 @@ public class EditService {
    * @throws IllegalAccessException
    */
   @Transactional(rollbackFor = Exception.class)
-  public void edit(PostRequestForm form, String userId) throws IllegalAccessException {
+  public void edit(PostRequestForm form, String userId) throws IllegalArgumentException {
 
     InformationEntity entity = form.toInformationEntity(userId);
 
@@ -60,7 +60,7 @@ public class EditService {
         informationDao.updateBy(entity, form.getUpdateDateTime());
     // 同時更新を防ぐために、削除されているまたは更新がされている場合は処理を行わない。
     if (editResult == 0) {
-      throw new IllegalAccessException("既に更新されています。ID=" + form.getId());
+      throw new IllegalArgumentException("既に更新されています。ID=" + form.getId());
     }
 
     // 該当お知らせタイプの削除
