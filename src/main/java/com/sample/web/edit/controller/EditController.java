@@ -52,7 +52,7 @@ public class EditController {
       PostRequestForm postResponseForm = editService.findById(id);
       model.addAttribute("postRequestForm", postResponseForm);
     } catch (IllegalArgumentException ex) {
-      log.info(ex.getMessage());
+      log.warn(ex.getMessage());
       redirectAttributes.addAttribute(
           MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00008", null, null));
       return REDIRECT_SEARCH;
@@ -118,9 +118,10 @@ public class EditController {
     try {
       editService.edit(postRequestForm, user.getUserId());
     } catch (IllegalArgumentException ex) {
-      log.info(ex.getMessage());
+      log.warn(ex.getMessage());
       redirectAttributes.addAttribute(
           MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00007", null, null));
+      return REDIRECT_SEARCH;
     }
 
     // 正常更新メッセージのセット
