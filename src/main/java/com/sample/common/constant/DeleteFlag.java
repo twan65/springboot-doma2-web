@@ -7,9 +7,13 @@ public enum DeleteFlag {
     NOT_DELETE(0),
     DELETE(1);
 
-    int flag;
+    private final int flag;
 
     DeleteFlag(int flag) {
         this.flag = flag;
+    }
+
+    public int value() {
+        return flag;
     }
 }

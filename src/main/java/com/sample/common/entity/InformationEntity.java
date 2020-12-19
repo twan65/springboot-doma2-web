@@ -1,5 +1,6 @@
 package com.sample.common.entity;
 
+import com.sample.common.constant.DeleteFlag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -66,17 +67,9 @@ public class InformationEntity {
     this.updateDateTime = updateDateTime;
   }
 
-  public void update(
-      String title,
-      String overview,
-      LocalDate displayStartDate,
-      LocalDate displayEndDate,
+  public void delete(
       String updateId) {
-    this.title = title;
-    this.overview = overview;
-    this.displayStartDate = displayStartDate;
-    this.displayEndDate = displayEndDate;
-    this.updateId = updateId;
+    this.isDelete = DeleteFlag.DELETE.value();
     this.updateId = updateId;
     this.updateDateTime = LocalDateTime.now();
   }
