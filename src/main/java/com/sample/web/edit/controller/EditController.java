@@ -82,7 +82,7 @@ public class EditController {
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute(
           MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
-      redirectAttributes.addFlashAttribute(postRequestForm);
+      redirectAttributes.addFlashAttribute("postRequestForm", postRequestForm);
       redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
       return REDIRECT_EDIT + id;
     }
@@ -112,7 +112,7 @@ public class EditController {
     if (bindingResult.hasErrors()) {
       redirectAttributes.addFlashAttribute(
               MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
-      redirectAttributes.addFlashAttribute(postRequestForm);
+      redirectAttributes.addFlashAttribute("postRequestForm", postRequestForm);
       redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
 
       return REDIRECT_EDIT + id;
