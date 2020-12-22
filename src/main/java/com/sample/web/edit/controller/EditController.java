@@ -9,6 +9,7 @@ import com.sample.web.post.model.PostRequestForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
+import org.springframework.core.Conventions;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,6 @@ public class EditController {
   /**
    * 編集画面を返却する。
    * @param id お知らせID
-   * @param postRequestForm お知らせリクエストフォーム
    * @param model
    * @param redirectAttributes
    * @return 編集画面
@@ -42,7 +42,6 @@ public class EditController {
   @GetMapping("/edit/{id}")
   public String editIndex(
       @PathVariable Integer id,
-      @ModelAttribute PostRequestForm postRequestForm,
       Model model,
       RedirectAttributes redirectAttributes) {
 
@@ -81,8 +80,10 @@ public class EditController {
     model.addAttribute("informationTypes", InformationType.values());
 
     if (bindingResult.hasErrors()) {
-      redirectAttributes.addAttribute(
+      redirectAttributes.addFlashAttribute(
           MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
+      redirectAttributes.addFlashAttribute(postRequestForm);
+      redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
       return REDIRECT_EDIT + id;
     }
 
@@ -109,8 +110,11 @@ public class EditController {
       RedirectAttributes redirectAttributes) {
 
     if (bindingResult.hasErrors()) {
-      redirectAttributes.addAttribute(
-          MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
+      redirectAttributes.addFlashAttribute(
+              MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
+      redirectAttributes.addFlashAttribute(postRequestForm);
+      redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
+
       return REDIRECT_EDIT + id;
     }
 
