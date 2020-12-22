@@ -8,6 +8,7 @@ import com.sample.web.post.model.PostRequestForm;
 import com.sample.web.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
+import org.springframework.core.Conventions;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,12 +59,16 @@ public class PostController {
   public String confirm(
       @ModelAttribute @Validated PostRequestForm postRequestForm,
       BindingResult bindingResult,
+      RedirectAttributes redirectAttributes,
       Model model) {
 
     model.addAttribute(INFORMATION_TYPE_LIST_ATTR, InformationType.values());
 
     if (bindingResult.hasErrors()) {
-      model.addAttribute(POST_REQUEST_FORM_ATTR, postRequestForm);
+      redirectAttributes.addAttribute(POST_REQUEST_FORM_ATTR, postRequestForm);
+      redirectAttributes.addFlashAttribute(
+              MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
+      redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
       return ViewNames.POST_PAGE;
     }
 
@@ -90,6 +95,9 @@ public class PostController {
 
     if (bindingResult.hasErrors()) {
       redirectAttributes.addAttribute(POST_REQUEST_FORM_ATTR, postRequestForm);
+      redirectAttributes.addFlashAttribute(
+              MessageType.ERROR_MESSAGE.name(), messageSource.getMessage("VE00000", null, null));
+      redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + Conventions.getVariableName(postRequestForm), bindingResult);
       return REDIRECT_POST;
     }
 
