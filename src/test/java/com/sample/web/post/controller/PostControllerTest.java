@@ -40,7 +40,7 @@ public class PostControllerTest {
   private static final String URL_POST = "/post";
   private static final String URL_POST_CONFIRM = "/post/confirm";
 
-  private static final List<String> NG_DATE_FORMATS =
+  private static final List<String> NG_DATE_FORMATS =    
       new ArrayList<>() {
         {
           add("2020/12/12");
